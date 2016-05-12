@@ -1,27 +1,62 @@
-<div class="jumbotron"> 
-	<img src="/assets/images/burger-outline-filled.png"> 
-	<h1> Eat-Da-Burger! </h1>
+<div class="container">	
+	<div class="jumbotron"> 
+		<img src="/assets/images/burger-outline-filled.png"> 
+		<h1> Eat-Da-Burger! </h1>
+	</div>
+
+	{{!-- burger list before being eaten --}}
+	<div class="row">
+		<div class="col-md-4 col-offset-md-1">
+			<div class="panel-panel default">
+				<ul class="list-group">
+				{{#each burgers}}
+					{{#unless this.devoured}}
+					<li class="list-group-item">
+						<div class="input-group">
+							<p> {{this.burger_name}} </p>
+							<span class="input-group-btn">
+								<form action="burgers/devour/{{this.id}}?_method=PUT" method="POST">
+									<input type="hidden" name="devour" value="true">
+									<button class="btn btn-default" type="submit"> Devour! </button>
+								</form>
+							</span>
+						</div>
+					</li>
+					{{/unless}}
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+
+
+		{{!-- burger list after being eaten --}}
+	<div class="row">
+		<div class="col-md-4 col-offset-md-2">
+			<div class="panel panel-default">
+				<ul class="list-group">
+				{{#each burgers}}
+					{{#if this.devoured}}
+					<li class="list-group-item">
+						{{this.name}} 
+					</li>
+					{{/if}}
+				{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-10 col-offset-md-1">
+		<p class="lead"> Enter the name of the burger you want to eat & click the submit button. </p>
+
+		{{!-- section to add burgers --}}
+		<form class="create-update-form" action="burgers/create" method="POST">
+
+			<div class="form-group">
+				<input class="form-control input-lg" type="text" id="burg" name="name">
+			</div>
+
+			<button class="btn btn-default" type="submit">Submit!</button>
+		</form>
+	</div>
 </div>
-
-{{!-- burger list before being eaten --}}
-{{#each burgers}}
-	{{#unless this.devoured}}
-	<div class="col-md-4 col-offset-md-1">
-		
-	</div>
-	{{/unless}}
-{{/each}}
-
-<p class="lead"> Enter the name of the burger you want to eat & click the submit button. </p>
-
-{{!-- section to add burgers --}}
-<form class="create-update-form" action="burgers/create" method="POST">
-
-	<div class="form-group">
-{{!-- 		<textarea class="form-control input-lg" rows="3"> --}}
-			<input class="form-control input-lg" type="text" id="burg" name="name">
-		</textarea>
-	</div>
-
-	<button class="btn btn-default" type="submit">Submit!</button>
-</form>
