@@ -1,28 +1,27 @@
 <div class="jumbotron"> 
-	<img src="../public/assets/images/burger-outline-filled.png"> 
+	<img src="/assets/images/burger-outline-filled.png"> 
 	<h1> Eat-Da-Burger! </h1>
 </div>
 
 {{!-- burger list before being eaten --}}
-{{#each.burgers}}
+{{#each burgers}}
 	{{#unless this.devoured}}
 	<div class="col-md-4 col-offset-md-1">
 		
 	</div>
+	{{/unless}}
+{{/each}}
 
-
+<p class="lead"> Enter the name of the burger you want to eat & click the submit button. </p>
 
 {{!-- section to add burgers --}}
 <form class="create-update-form" action="burgers/create" method="POST">
 
 	<div class="form-group">
-		<textarea class="form-control input-lg" rows="3">
-			<input type="text" id="burg" name="name">
+{{!-- 		<textarea class="form-control input-lg" rows="3"> --}}
+			<input class="form-control input-lg" type="text" id="burg" name="name">
 		</textarea>
 	</div>
 
 	<button class="btn btn-default" type="submit">Submit!</button>
 </form>
-
-<p class="lead"> Enter the name of the burger you want to eat & click the submit button. </p>
-
