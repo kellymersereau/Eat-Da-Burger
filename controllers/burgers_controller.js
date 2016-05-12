@@ -22,12 +22,12 @@ router.post('/burgers/create', function(req, res){
 	});
 });
 
-router.post('/burgers/devour/:burger_id', function(req, res){
-	var condition = 'burger_id = ' + req.params.burger_id;
+router.put('/burgers/update/:id', function(req, res){
+	var condition = 'id = ' + req.params.id;
 
 	console.log('condition ', condition);
 
-	burgers.devour(condition, function(data){
+	burgers.update({'devoured': req.body.devoured}, condition, function(data){
 		res.redirect('/burgers');
 	});
 });

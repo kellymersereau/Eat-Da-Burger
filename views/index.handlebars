@@ -6,17 +6,17 @@
 
 	{{!-- burger list before being eaten --}}
 	<div class="row">
-		<div class="col-md-4 col-offset-md-1">
+		<div class="col-md-4 col-md-offset-1">
 			<div class="panel-panel default">
 				<ul class="list-group">
 				{{#each burgers}}
 					{{#unless this.devoured}}
 					<li class="list-group-item">
 						<div class="input-group">
-							<p> {{this.burger_name}} </p>
+							<p class="lead"> {{this.burger_name}} </p>
 							<span class="input-group-btn">
-								<form action="burgers/devour/{{this.id}}?_method=PUT" method="POST">
-									<input type="hidden" name="devour" value="true">
+								<form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+									<input type="hidden" name="devoured" value="true">
 									<button class="btn btn-default" type="submit"> Devour! </button>
 								</form>
 							</span>
@@ -31,13 +31,13 @@
 
 		{{!-- burger list after being eaten --}}
 	<div class="row">
-		<div class="col-md-4 col-offset-md-2">
+		<div class="col-md-4 col-md-offset-2">
 			<div class="panel panel-default">
 				<ul class="list-group">
 				{{#each burgers}}
 					{{#if this.devoured}}
 					<li class="list-group-item">
-						{{this.name}} 
+						<p class="lead">{{this.burger_name}} </p>
 					</li>
 					{{/if}}
 				{{/each}}
@@ -46,17 +46,20 @@
 		</div>
 	</div>
 
-	<div class="col-md-10 col-offset-md-1">
+	<div class="col-md-10 col-md-offset-1">
 		<p class="lead"> Enter the name of the burger you want to eat & click the submit button. </p>
 
 		{{!-- section to add burgers --}}
 		<form class="create-update-form" action="burgers/create" method="POST">
 
 			<div class="form-group">
-				<input class="form-control input-lg" type="text" id="burg" name="name">
+				<textarea class="form-control input-lg" type="text" rows="3">
 			</div>
 
-			<button class="btn btn-default" type="submit">Submit!</button>
+			<button class="btn btn-default btn-lg" type="submit">Submit!</button>
 		</form>
 	</div>
 </div>
+
+
+<footer> </footer>
