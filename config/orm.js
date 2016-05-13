@@ -30,9 +30,10 @@ var orm = {
 			cb(result);
 		});
 	},
-	create: function(table, cols, vals, cb){
+	create: function(table, col, vals, cb){
 		var queryString = 'INSERT INTO ' + table;
-		queryString = queryString + cols.toString(); 
+		queryString = queryString + ' (';
+		queryString = queryString + col.toString(); 
 		queryString = queryString + ') ';
 		queryString = queryString + 'VALUES (';
 		queryString = queryString + printQuestionMarks(vals.length);
